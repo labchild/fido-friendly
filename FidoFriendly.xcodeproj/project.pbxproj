@@ -9,19 +9,27 @@
 /* Begin PBXBuildFile section */
 		B4996E312964D25000A72707 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4996E302964D25000A72707 /* AppDelegate.swift */; };
 		B4996E332964D25000A72707 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4996E322964D25000A72707 /* SceneDelegate.swift */; };
-		B4996E352964D25000A72707 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4996E342964D25000A72707 /* FirstViewController.swift */; };
+		B4996E352964D25000A72707 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4996E342964D25000A72707 /* TabBarController.swift */; };
 		B4996E3A2964D25100A72707 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B4996E392964D25100A72707 /* Assets.xcassets */; };
 		B4996E3D2964D25100A72707 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4996E3B2964D25100A72707 /* LaunchScreen.storyboard */; };
+		B49E977A29676BF80037D397 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49E977929676BF80037D397 /* HomeViewController.swift */; };
+		B49E977C29676C230037D397 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49E977B29676C230037D397 /* ResultsViewController.swift */; };
+		B49E977E29676C800037D397 /* ResultsMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49E977D29676C800037D397 /* ResultsMapViewController.swift */; };
+		B49E978029676CE80037D397 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49E977F29676CE80037D397 /* FavoritesViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		B4996E2D2964D25000A72707 /* FidoFriendly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FidoFriendly.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4996E302964D25000A72707 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B4996E322964D25000A72707 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		B4996E342964D25000A72707 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
+		B4996E342964D25000A72707 /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		B4996E392964D25100A72707 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B4996E3C2964D25100A72707 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B4996E3E2964D25100A72707 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B49E977929676BF80037D397 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		B49E977B29676C230037D397 /* ResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
+		B49E977D29676C800037D397 /* ResultsMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsMapViewController.swift; sourceTree = "<group>"; };
+		B49E977F29676CE80037D397 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +62,26 @@
 		B4996E2F2964D25000A72707 /* FidoFriendly */ = {
 			isa = PBXGroup;
 			children = (
+				B49E977829676BDE0037D397 /* Controller */,
 				B4996E302964D25000A72707 /* AppDelegate.swift */,
 				B4996E322964D25000A72707 /* SceneDelegate.swift */,
-				B4996E342964D25000A72707 /* FirstViewController.swift */,
+				B4996E342964D25000A72707 /* TabBarController.swift */,
 				B4996E392964D25100A72707 /* Assets.xcassets */,
 				B4996E3B2964D25100A72707 /* LaunchScreen.storyboard */,
 				B4996E3E2964D25100A72707 /* Info.plist */,
 			);
 			path = FidoFriendly;
+			sourceTree = "<group>";
+		};
+		B49E977829676BDE0037D397 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B49E977929676BF80037D397 /* HomeViewController.swift */,
+				B49E977B29676C230037D397 /* ResultsViewController.swift */,
+				B49E977D29676C800037D397 /* ResultsMapViewController.swift */,
+				B49E977F29676CE80037D397 /* FavoritesViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -134,9 +154,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B4996E352964D25000A72707 /* FirstViewController.swift in Sources */,
+				B4996E352964D25000A72707 /* TabBarController.swift in Sources */,
 				B4996E312964D25000A72707 /* AppDelegate.swift in Sources */,
+				B49E978029676CE80037D397 /* FavoritesViewController.swift in Sources */,
 				B4996E332964D25000A72707 /* SceneDelegate.swift in Sources */,
+				B49E977C29676C230037D397 /* ResultsViewController.swift in Sources */,
+				B49E977E29676C800037D397 /* ResultsMapViewController.swift in Sources */,
+				B49E977A29676BF80037D397 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
