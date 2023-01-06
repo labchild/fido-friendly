@@ -16,6 +16,7 @@
 		B49E977C29676C230037D397 /* ResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49E977B29676C230037D397 /* ResultsViewController.swift */; };
 		B49E977E29676C800037D397 /* ResultsMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49E977D29676C800037D397 /* ResultsMapViewController.swift */; };
 		B49E978029676CE80037D397 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49E977F29676CE80037D397 /* FavoritesViewController.swift */; };
+		B4B0B8F12967A19D002AF645 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B0B8F02967A19D002AF645 /* DetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		B49E977B29676C230037D397 /* ResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsViewController.swift; sourceTree = "<group>"; };
 		B49E977D29676C800037D397 /* ResultsMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsMapViewController.swift; sourceTree = "<group>"; };
 		B49E977F29676CE80037D397 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
+		B4B0B8F02967A19D002AF645 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 		B4996E2F2964D25000A72707 /* FidoFriendly */ = {
 			isa = PBXGroup;
 			children = (
+				B4B0B8EF29679FB0002AF645 /* View */,
 				B49E977829676BDE0037D397 /* Controller */,
 				B4996E302964D25000A72707 /* AppDelegate.swift */,
 				B4996E322964D25000A72707 /* SceneDelegate.swift */,
@@ -80,8 +83,16 @@
 				B49E977B29676C230037D397 /* ResultsViewController.swift */,
 				B49E977D29676C800037D397 /* ResultsMapViewController.swift */,
 				B49E977F29676CE80037D397 /* FavoritesViewController.swift */,
+				B4B0B8F02967A19D002AF645 /* DetailsViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		B4B0B8EF29679FB0002AF645 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -157,6 +168,7 @@
 				B4996E352964D25000A72707 /* TabBarController.swift in Sources */,
 				B4996E312964D25000A72707 /* AppDelegate.swift in Sources */,
 				B49E978029676CE80037D397 /* FavoritesViewController.swift in Sources */,
+				B4B0B8F12967A19D002AF645 /* DetailsViewController.swift in Sources */,
 				B4996E332964D25000A72707 /* SceneDelegate.swift in Sources */,
 				B49E977C29676C230037D397 /* ResultsViewController.swift in Sources */,
 				B49E977E29676C800037D397 /* ResultsMapViewController.swift in Sources */,
