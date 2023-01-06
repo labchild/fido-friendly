@@ -13,9 +13,10 @@ class TabBarController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        view.backgroundColor = .systemPink
+        //tabBarController?.tabBar.tintColor = .secondarySystemBackground
         /* title = "Fido Friendly"
         navigationController?.navigationBar.prefersLargeTitles = true */
+
         
         // navigation tab menu
         let tab1 = UINavigationController(rootViewController: HomeViewController())

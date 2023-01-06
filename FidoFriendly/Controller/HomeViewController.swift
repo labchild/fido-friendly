@@ -9,10 +9,10 @@ import UIKit
 
 class HomeViewController: UIViewController {
 
-    private let textField = UITextField()
-    private let searchButton = UIButton()
+    let textField = UITextField()
+    let searchButton = UIButton()
    /* private var categoryPickers = [UISwitch]()*/
-    private let formStack: UIStackView = {
+    let formStack: UIStackView = {
         // move the config to a view eventually
         let formStack = UIStackView()
         formStack.translatesAutoresizingMaskIntoConstraints = false
@@ -55,7 +55,7 @@ class HomeViewController: UIViewController {
         }
     }*/
    
-    private func arrangeStackedForm() {
+    func arrangeStackedForm() {
         // configure stackview
         configButton()
         //createCategorySwitches()
@@ -72,7 +72,7 @@ class HomeViewController: UIViewController {
         formStack.addArrangedSubview(searchButton)
     }
     
-    private func addStackConstraints() {
+    func addStackConstraints() {
         var constraints = [NSLayoutConstraint]()
         
         formStack.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 20, leading: 20, bottom: 20, trailing: 20)
