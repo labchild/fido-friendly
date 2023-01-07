@@ -73,29 +73,16 @@ class HomeViewController: UIViewController {
     }
     
     func addStackConstraints() {
-        var constraints = [NSLayoutConstraint]()
+        let formStackConstraints = [
+            formStack.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            formStack.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor),
+            formStack.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.7)
+        ]
         
         formStack.directionalLayoutMargins = NSDirectionalEdgeInsets(top: 20, leading: 20, bottom: 20, trailing: 20)
         
-        // center stack
-        constraints.append(formStack.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor))
-        constraints.append(formStack.centerYAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerYAnchor))
-        
-        constraints.append(formStack.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.7))
-       // constraints.append(formStack.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.5))
-        
-        // static shape for stack
-        /*constraints.append(formStack.leadingAnchor.constraint(
-            equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 50))
-        constraints.append(formStack.trailingAnchor.constraint(
-            equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -50))
-        constraints.append(formStack.topAnchor.constraint(
-            equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 50))
-        constraints.append(formStack.bottomAnchor.constraint(
-            equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -150))*/
-        
         // activate
-        NSLayoutConstraint.activate(constraints)
+        NSLayoutConstraint.activate(formStackConstraints)
     }
 
     @objc func didSendSearchButton() {
