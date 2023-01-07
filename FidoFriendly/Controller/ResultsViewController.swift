@@ -52,6 +52,11 @@ extension ResultsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         resultsTable.deselectRow(at: indexPath, animated: true)
         print("cell \(indexPath.row + 1) tapped")
+        
+        let detailsVC = DetailsViewController()
+        detailsVC.title = searchData[indexPath.row]
+        navigationController?.pushViewController(detailsVC, animated: true)
+        
     }
 
 }
