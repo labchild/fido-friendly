@@ -20,7 +20,7 @@ class TabBarController: UITabBarController {
         
         // navigation tab menu
         let tab1 = UINavigationController(rootViewController: HomeViewController())
-        let tab2 = UINavigationController(rootViewController: FavoritesViewController())
+        let tab2 = UINavigationController(rootViewController: SavedPlacesViewController())
         
         tab1.tabBarItem.image = UIImage(systemName: "magnifyingglass")
         tab2.tabBarItem.image = UIImage(systemName: "heart")

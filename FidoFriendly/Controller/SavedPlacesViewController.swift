@@ -7,8 +7,10 @@
 
 import UIKit
 
-class FavoritesViewController: UIViewController {
+class SavedPlacesViewController: UIViewController {
 
+    let savedPlaceTable = UITableView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
