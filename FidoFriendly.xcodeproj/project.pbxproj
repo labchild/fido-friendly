@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B473CA80296A227F00CB2A86 /* DogFriendlyPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = B473CA7F296A227F00CB2A86 /* DogFriendlyPlace.swift */; };
 		B4996E312964D25000A72707 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4996E302964D25000A72707 /* AppDelegate.swift */; };
 		B4996E332964D25000A72707 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4996E322964D25000A72707 /* SceneDelegate.swift */; };
 		B4996E352964D25000A72707 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4996E342964D25000A72707 /* TabBarController.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B473CA7F296A227F00CB2A86 /* DogFriendlyPlace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogFriendlyPlace.swift; sourceTree = "<group>"; };
 		B4996E2D2964D25000A72707 /* FidoFriendly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FidoFriendly.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4996E302964D25000A72707 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B4996E322964D25000A72707 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -45,6 +47,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B473CA7E296A221200CB2A86 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				B473CA7F296A227F00CB2A86 /* DogFriendlyPlace.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		B4996E242964D24F00A72707 = {
 			isa = PBXGroup;
 			children = (
@@ -64,6 +74,7 @@
 		B4996E2F2964D25000A72707 /* FidoFriendly */ = {
 			isa = PBXGroup;
 			children = (
+				B473CA7E296A221200CB2A86 /* Models */,
 				B4B0B8EF29679FB0002AF645 /* View */,
 				B49E977829676BDE0037D397 /* Controller */,
 				B4996E302964D25000A72707 /* AppDelegate.swift */,
@@ -169,6 +180,7 @@
 				B4996E312964D25000A72707 /* AppDelegate.swift in Sources */,
 				B49E978029676CE80037D397 /* FavoritesViewController.swift in Sources */,
 				B4B0B8F12967A19D002AF645 /* DetailsViewController.swift in Sources */,
+				B473CA80296A227F00CB2A86 /* DogFriendlyPlace.swift in Sources */,
 				B4996E332964D25000A72707 /* SceneDelegate.swift in Sources */,
 				B49E977C29676C230037D397 /* ResultsViewController.swift in Sources */,
 				B49E977E29676C800037D397 /* ResultsMapViewController.swift in Sources */,
