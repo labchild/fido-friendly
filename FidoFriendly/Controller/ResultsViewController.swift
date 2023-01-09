@@ -60,7 +60,6 @@ extension ResultsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.textLabel?.text = searchData?[indexPath.row].placeName
-        //cell.textLabel?.text = searchData?.placeName
         return cell
     }
     
@@ -70,7 +69,6 @@ extension ResultsViewController: UITableViewDelegate, UITableViewDataSource {
         
         let detailsVC = DetailsViewController()
         detailsVC.title = searchData?[indexPath.row].placeName
-        //detailsVC.title = searchData?.placeName
         navigationController?.pushViewController(detailsVC, animated: true)
         
     }
