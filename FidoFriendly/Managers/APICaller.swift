@@ -33,9 +33,10 @@ class APICaller {
             }
             
             do {
-                print(data)
+                //print(data)
                 let results = try JSONDecoder().decode(Places.self, from: data)
-                print("results: \(results)")
+                completion(results)
+                //print("results: \(results)")
             } catch {
                 print(error)
             }
@@ -60,9 +61,10 @@ class APICaller {
             }
             
             do {
-                print(data)
+                //print(data)
                 let results = try JSONDecoder().decode(DogFriendlyPlace.self, from: data)
-                print("single result: \(results)")
+                completion(results)
+                //print("single result: \(results)")
             } catch {
                 print(error.localizedDescription)
             }
