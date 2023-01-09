@@ -45,7 +45,6 @@ class ResultsViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         resultsTable.frame = view.bounds
-        print((searchData != nil) ? searchData! : "nada")
     }
 
 
@@ -65,7 +64,7 @@ extension ResultsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         resultsTable.deselectRow(at: indexPath, animated: true)
-        print("cell \(indexPath.row + 1) tapped & \(String(describing: searchData?[indexPath.row].placeName))")
+        print(searchData![indexPath.row])
         
         let detailsVC = DetailsViewController()
         detailsVC.title = searchData?[indexPath.row].placeName
