@@ -9,30 +9,64 @@ import Foundation
 
 
 class APICaller {
+    let baseURL = "https://api.foursquare.com/v3/places"
+    let search = "/search?query=dog-friendly,dogs"
+    let byID = "/fsq_id"
+    
     static let shared = APICaller()
     
     // basic get request
-    func getDogFriendlyResults(completion: @escaping (String) -> Void) {
+    func getDogFriendlyResults(completion: @escaping (Places) -> Void) {
 
-        let myUrlString = "https://api.foursquare.com/v3/places/search?query=dog-friendly&fields=website,name&ll=40.64994853980254,-73.9605774290414"
        
-        guard let url = URL(string:myUrlString) else { return }
+        guard let url = URL(string: "\(baseURL)\(search)&ll=40.64994853980254,-73.9605774290414") else { return }
         
         var request = URLRequest(url: url)
         request.setValue("fsq3wER44I2BMZ/3LX+LgxYsaNep8ibuWxm738hSwlh9tKY=", forHTTPHeaderField: "Authorization")
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
         
-        let task = URLSession.shared.dataTask(with: request) { (data, _, error) in
+        let task = URLSession.shared.dataTask(with: request, completionHandler: {(data, _, error) in
             guard let data = data, error == nil else {
+                print("broke in the guard")
+                return
+                
+            }
+            
+            do {
+                print(data)
+                let results = try JSONDecoder().decode(Places.self, from: data)
+                print("results: \(results)")
+            } catch {
+                print(error)
+            }
+        })
+        
+        task.resume()
+    }
+    
+    
+    func getOneDogFriendlyResult(with id: String, completion: @escaping (DogFriendlyPlace) -> Void) {
+       
+        guard let url = URL(string: "\(baseURL)\(byID)/\(id)") else { return }
+        
+        var request = URLRequest(url: url)
+        request.setValue("fsq3wER44I2BMZ/3LX+LgxYsaNep8ibuWxm738hSwlh9tKY=", forHTTPHeaderField: "Authorization")
+        request.setValue("application/json", forHTTPHeaderField: "Accept")
+        
+        let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, _, error) in
+            guard let data = data, error == nil else {
+                print("broke in the guard")
                 return
             }
             
             do {
-                let results = try JSONDecoder().decode(Places.self, from: data)
-                print(results)
+                print(data)
+                let results = try JSONDecoder().decode(DogFriendlyPlace.self, from: data)
+                print("single result: \(results)")
             } catch {
                 print(error.localizedDescription)
             }
-        }
+        })
         
         task.resume()
     }

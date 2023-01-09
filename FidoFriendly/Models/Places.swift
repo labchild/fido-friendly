@@ -7,6 +7,6 @@
 
 import Foundation
 
-struct Places: Codable {
+struct Places: Decodable {
     var results: [DogFriendlyPlace]
 }
