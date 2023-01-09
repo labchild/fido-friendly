@@ -58,6 +58,7 @@ extension ResultsViewController: UITableViewDelegate, UITableViewDataSource {
         resultsTable.deselectRow(at: indexPath, animated: true)
         print(searchData![indexPath.row])
         
+        // I could and perhaps should turn details into a model, then send the whole Dog Friendly Place to the constructor?
         let detailsVC = DetailsViewController()
         detailsVC.title = searchData?[indexPath.row].placeName ?? "Unknown Name"
         detailsVC.placeNameLabel.text = searchData?[indexPath.row].placeName ?? "Unknown Name"
@@ -65,7 +66,7 @@ extension ResultsViewController: UITableViewDelegate, UITableViewDataSource {
         detailsVC.addressLabel.text = searchData?[indexPath.row].location?.address ?? ""
         detailsVC.phoneNumberLabel.text = searchData?[indexPath.row].tel ?? ""
         detailsVC.websiteLabel.text = searchData?[indexPath.row].website ?? ""
-        detailsVC.ratingsLabel.text = searchData?[indexPath.row].rating?.description ?? ""
+        detailsVC.ratingsLabel.text = "\(searchData?[indexPath.row].rating?.description ?? "-")/10"
         navigationController?.pushViewController(detailsVC, animated: true)
         
     }
