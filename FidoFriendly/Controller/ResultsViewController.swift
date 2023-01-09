@@ -20,18 +20,9 @@ class ResultsViewController: UIViewController {
         view.backgroundColor = .systemPurple
         view.addSubview(resultsTable)
         
-        resultsTable.register(UITableViewCell.self,
-                              forCellReuseIdentifier: "cell")
+        resultsTable.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
         resultsTable.delegate = self
         resultsTable.dataSource = self
-        
-        
-//        APICaller().getOneDogFriendlyResult(with: "49c4489df964a520b9561fe3", completion: { (place) in
-//            self.searchData = place
-//            DispatchQueue.main.async {
-//                self.resultsTable.reloadData()
-//            }
-//        })
         
         APICaller().getDogFriendlyResults(completion: { (Places) in
             self.searchData = Places.results
@@ -53,12 +44,13 @@ class ResultsViewController: UIViewController {
 extension ResultsViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return searchData?.count  ?? 1
+        return searchData?.count ?? 1
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
         cell.textLabel?.text = searchData?[indexPath.row].placeName
+        
         return cell
     }
     
@@ -67,7 +59,13 @@ extension ResultsViewController: UITableViewDelegate, UITableViewDataSource {
         print(searchData![indexPath.row])
         
         let detailsVC = DetailsViewController()
-        detailsVC.title = searchData?[indexPath.row].placeName
+        detailsVC.title = searchData?[indexPath.row].placeName ?? "Unknown Name"
+        detailsVC.placeNameLabel.text = searchData?[indexPath.row].placeName ?? "Unknown Name"
+        detailsVC.categoryLabel.text = searchData?[indexPath.row].categories?[0].name ?? ""
+        detailsVC.addressLabel.text = searchData?[indexPath.row].location?.address ?? ""
+        detailsVC.phoneNumberLabel.text = searchData?[indexPath.row].tel ?? ""
+        detailsVC.websiteLabel.text = searchData?[indexPath.row].website ?? ""
+        detailsVC.ratingsLabel.text = searchData?[indexPath.row].rating?.description ?? ""
         navigationController?.pushViewController(detailsVC, animated: true)
         
     }
