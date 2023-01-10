@@ -1,5 +1,5 @@
 //
-//  APICaller.swift
+//  APIManager.swift
 //  FidoFriendly
 //
 //  Created by Lelah Bates Childs on 1/8/23.
@@ -8,12 +8,12 @@
 import Foundation
 
 
-class APICaller {
+class APIManager {
     let baseURL = "https://api.foursquare.com/v3/places"
     let search = "/search?query=dog-friendly,dogs"
     let byID = "/fsq_id"
     
-    static let shared = APICaller()
+    static let shared = APIManager()
     
     // basic get request
     func getDogFriendlyResults(lat: Double, long: Double, completion: @escaping (Places) -> Void) {
