@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreData
 
 class DetailsViewController: UIViewController {
 
@@ -69,6 +70,8 @@ class DetailsViewController: UIViewController {
         view.addSubview(saveButton)
         
         configureConstraints()
+        
+        saveButton.addTarget(self, action: #selector(savePlaceResult), for: .touchUpInside)
     }
 
     func configureConstraints() {
@@ -111,5 +114,30 @@ class DetailsViewController: UIViewController {
         NSLayoutConstraint.activate(websiteLabelConstraints)
         NSLayoutConstraint.activate(saveButtonConstraints)
     }
+    
+    // MARK: Actions
+    func savePlaceResult() {
+        
+    }
 }
 
+// MARK: Extensions: Core Data
+extension DetailsViewController {
+    func save(value: String) {
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+            let context = appDelegate.persistentContainer.viewContext
+            
+            guard let entityDescription = NSEntityDescription.entity(forEntityName: "TestEntity", in: context) else { return }
+            
+            let newValue = NSManagedObject(entity: entityDescription, insertInto: context)
+            newValue.setValue(value, forKey: "testName")
+            
+            do {
+                try context.save()
+                print("Saved: \(value)")
+            } catch {
+                print("Saving error: \(error)")
+            }
+        }
+    }
+}
