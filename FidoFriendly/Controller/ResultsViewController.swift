@@ -12,6 +12,8 @@ class ResultsViewController: UIViewController {
     let resultsTable = UITableView()
     
     var searchData: [DogFriendlyPlace]?
+    var latitude: Double = 40.123
+    var longitude: Double =  -85.432
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +26,11 @@ class ResultsViewController: UIViewController {
         resultsTable.delegate = self
         resultsTable.dataSource = self
         
-        APICaller.shared.getDogFriendlyResults(completion: { (Places) in
+        // call for generic "dog-friendly" search on Foursquare
+        APICaller.shared.getDogFriendlyResults(
+            lat: latitude,
+            long: longitude,
+            completion: { (Places) in
             self.searchData = Places.results
             DispatchQueue.main.async {
                 self.resultsTable.reloadData()
@@ -40,6 +46,8 @@ class ResultsViewController: UIViewController {
 
 
 }
+
+// MARK: Extensions
 
 extension ResultsViewController: UITableViewDelegate, UITableViewDataSource {
 

@@ -6,19 +6,24 @@
 //
 
 import UIKit
+import MapKit
+import CoreLocation
 
 class HomeViewController: UIViewController {
+    
+    private let locationManager = CLLocationManager()
+    private var currentLocation: CLPlacemark?
 
     let textField = UITextField()
+    
+    let searchSuggestionsTable = UITableView()
     let searchButton = UIButton()
-   /* private var categoryPickers = [UISwitch]()*/
     let formStack: UIStackView = {
-        // move the config to a view eventually
+        // move the config eventually
         let formStack = UIStackView()
         formStack.translatesAutoresizingMaskIntoConstraints = false
         formStack.backgroundColor = .systemMint
         formStack.axis = .vertical
-        //formStack.distribution = .equalCentering
         formStack.spacing = UIStackView.spacingUseSystem
         formStack.spacing = 20.0
         formStack.isLayoutMarginsRelativeArrangement = true
@@ -27,10 +32,40 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         view.backgroundColor = .systemBlue
         view.addSubview(formStack)
         arrangeStackedForm()
         addStackConstraints()
+        
+        attemptLocationAccess()
+    }
+    
+    // SET UP and helper functions (connection, layout)
+    
+    private func attemptLocationAccess() {
+        // try starting connection
+        guard CLLocationManager.locationServicesEnabled() else {
+            return
+        }
+        
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+        
+        // ask for permission
+        /*if CLLocationManager. {
+            locationManager.requestWhenInUseAuthorization()
+        } else {
+            locationManager.requestLocation()
+        }*/
+    }
+    
+    private func configureTextField() {
+        // textField.delegate = self
+        textField.placeholder = "Address"
+        textField.backgroundColor = .systemBackground
+        
+        textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingDidEnd)
     }
     
     func configButton() {
@@ -41,34 +76,14 @@ class HomeViewController: UIViewController {
         
         // target
         searchButton.addTarget(self, action: #selector(didSendSearchButton), for: .touchUpInside)
-        
-        // add constraints if I need them
     }
     
-   /* func createCategorySwitches() {
-        let categories = ["Dining & Drinking", "Parks & Outdoor Spaces","Veterinary", "Shopping", "Services"]
-        
-        for category in categories {
-            let checkbox = UISwitch()
-            checkbox.title = category
-            categoryPickers.append(checkbox)
-        }
-    }*/
-   
     func arrangeStackedForm() {
         // configure stackview
+        configureTextField()
         configButton()
-        //createCategorySwitches()
-        
-        // text field
-        textField.placeholder = "Address"
-        textField.backgroundColor = .systemBackground
-        /*for checkbox in categoryPickers {
-            formStack.addArrangedSubview(checkbox)
-        }*/
         
         formStack.addArrangedSubview(textField)
-        
         formStack.addArrangedSubview(searchButton)
     }
     
@@ -85,11 +100,77 @@ class HomeViewController: UIViewController {
         NSLayoutConstraint.activate(formStackConstraints)
     }
 
+    // ACTIONS
+    
+    @objc func textFieldDidChange(_ field: UITextField) {
+        if currentLocation != nil {
+            currentLocation = nil
+            field.text = ""
+        }
+        
+        // check query exists, then send to autocomplete
+        guard let query = field.text else {
+            // field was empty
+            return
+        }
+        print(query)
+    }
+    
     @objc func didSendSearchButton() {
-        // logic will need to capture text field text and query API
+        // grab geocode from text field / current location placemark
+        if let locationToSearch = currentLocation {
+            print(locationToSearch)
+        }
+        
+        print(locationManager.location)
+        
         let resultsScreen = ResultsViewController()
         resultsScreen.title = "Results"
         navigationController?.pushViewController(resultsScreen, animated: true)
     }
     
+}
+
+// MARK: Extensions
+// DELEGATES: TextField, LocationManager
+
+extension HomeViewController: CLLocationManagerDelegate {
+    // this happens when user responds to permission/changes settings
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        guard status == .authorizedWhenInUse else { return }
+        manager.requestLocation()
+    }
+    
+    // update locations
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.first else { return }
+        print("location: \(location)")
+        
+        // search completer goes here
+        
+        
+        // save geocode and address
+        /*
+        CLGeocoder().reverseGeocodeLocation(location) { (places, _) in
+            guard let firstAddress = places?.first,
+               self.textField.text == nil
+            else {
+                return
+            }
+            
+            // store the location and update text field!
+            self.currentLocation = firstAddress
+            self.textField.text = firstAddress.name
+            print("printing:\n", firstAddress)
+            print(firstAddress.name)
+            print("location: \(firstAddress.location)")
+        }*/
+    }
+    
+    
+    
+    // error
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("\(error.localizedDescription)\nerror:\(error)")
+    }
 }
