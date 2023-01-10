@@ -20,7 +20,9 @@ class APICaller {
 
         let returnFields = "&fields=fsq_id,name,categories,location,distance,link,description,tel,website,rating"
        
-        guard let url = URL(string: "\(baseURL)\(search)\(returnFields)&ll=40.64994853980254,-73.9605774290414") else { return }
+        guard
+            let url = URL(string: "\(baseURL)\(search)\(returnFields)&ll=40.64994853980254,-73.9605774290414")
+        else { return }
         
         var request = URLRequest(url: url)
         request.setValue("fsq3wER44I2BMZ/3LX+LgxYsaNep8ibuWxm738hSwlh9tKY=", forHTTPHeaderField: "Authorization")
