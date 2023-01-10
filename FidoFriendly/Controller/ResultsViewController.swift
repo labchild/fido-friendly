@@ -20,11 +20,11 @@ class ResultsViewController: UIViewController {
         view.backgroundColor = .systemPurple
         view.addSubview(resultsTable)
         
-        resultsTable.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        resultsTable.register(ResultsTableViewCell.self, forCellReuseIdentifier: "resultsCell")
         resultsTable.delegate = self
         resultsTable.dataSource = self
         
-        APICaller().getDogFriendlyResults(completion: { (Places) in
+        APICaller.shared.getDogFriendlyResults(completion: { (Places) in
             self.searchData = Places.results
             DispatchQueue.main.async {
                 self.resultsTable.reloadData()
@@ -48,9 +48,9 @@ extension ResultsViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = searchData?[indexPath.row].placeName
-        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "resultsCell", for: indexPath) as! ResultsTableViewCell
+        // cell.textLabel?.text = "\(searchData?[indexPath.row].placeName ?? "") - \(searchData?[indexPath.row].distance?.description ?? "")"
+        cell.placeResult = searchData?[indexPath.row]
         return cell
     }
     

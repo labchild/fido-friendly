@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B46B404F296D1046006C4F71 /* ResultsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46B404E296D1046006C4F71 /* ResultsTableViewCell.swift */; };
+		B46B4052296D24E5006C4F71 /* UnitConversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46B4051296D24E5006C4F71 /* UnitConversion.swift */; };
 		B473CA80296A227F00CB2A86 /* DogFriendlyPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = B473CA7F296A227F00CB2A86 /* DogFriendlyPlace.swift */; };
 		B473CA83296B9D5200CB2A86 /* APICaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = B473CA82296B9D5200CB2A86 /* APICaller.swift */; };
 		B473CA85296BACEC00CB2A86 /* Places.swift in Sources */ = {isa = PBXBuildFile; fileRef = B473CA84296BACEC00CB2A86 /* Places.swift */; };
@@ -23,6 +25,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B46B404E296D1046006C4F71 /* ResultsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsTableViewCell.swift; sourceTree = "<group>"; };
+		B46B4051296D24E5006C4F71 /* UnitConversion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitConversion.swift; sourceTree = "<group>"; };
 		B473CA7F296A227F00CB2A86 /* DogFriendlyPlace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogFriendlyPlace.swift; sourceTree = "<group>"; };
 		B473CA82296B9D5200CB2A86 /* APICaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APICaller.swift; sourceTree = "<group>"; };
 		B473CA84296BACEC00CB2A86 /* Places.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Places.swift; sourceTree = "<group>"; };
@@ -51,6 +55,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B46B4050296D24C6006C4F71 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				B46B4051296D24E5006C4F71 /* UnitConversion.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		B473CA7E296A221200CB2A86 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -87,6 +99,7 @@
 		B4996E2F2964D25000A72707 /* FidoFriendly */ = {
 			isa = PBXGroup;
 			children = (
+				B46B4050296D24C6006C4F71 /* Utils */,
 				B473CA81296B9D1100CB2A86 /* Managers */,
 				B473CA7E296A221200CB2A86 /* Models */,
 				B4B0B8EF29679FB0002AF645 /* View */,
@@ -116,6 +129,7 @@
 		B4B0B8EF29679FB0002AF645 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B46B404E296D1046006C4F71 /* ResultsTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -192,6 +206,7 @@
 			files = (
 				B4996E352964D25000A72707 /* TabBarController.swift in Sources */,
 				B4996E312964D25000A72707 /* AppDelegate.swift in Sources */,
+				B46B404F296D1046006C4F71 /* ResultsTableViewCell.swift in Sources */,
 				B49E978029676CE80037D397 /* SavedPlacesViewController.swift in Sources */,
 				B473CA83296B9D5200CB2A86 /* APICaller.swift in Sources */,
 				B4B0B8F12967A19D002AF645 /* DetailsViewController.swift in Sources */,
@@ -200,6 +215,7 @@
 				B49E977C29676C230037D397 /* ResultsViewController.swift in Sources */,
 				B473CA85296BACEC00CB2A86 /* Places.swift in Sources */,
 				B49E977E29676C800037D397 /* ResultsMapViewController.swift in Sources */,
+				B46B4052296D24E5006C4F71 /* UnitConversion.swift in Sources */,
 				B49E977A29676BF80037D397 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
