@@ -71,7 +71,7 @@ extension ResultsViewController: UITableViewDelegate, UITableViewDataSource {
         detailsVC.phoneNumberLabel.text = searchData?[indexPath.row].tel ?? ""
         detailsVC.websiteLabel.text = searchData?[indexPath.row].website ?? ""
         detailsVC.ratingsLabel.text = "\(searchData?[indexPath.row].rating?.description ?? "-")/10"
-        detailsVC.fsqID = searchData?[indexPath.row].fsqId! ?? ""
+        detailsVC.fsqID = searchData?[indexPath.row].fsqId ?? ""
         navigationController?.pushViewController(detailsVC, animated: true)
         
     }

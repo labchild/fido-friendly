@@ -9,6 +9,11 @@ import UIKit
 import CoreData
 
 class DetailsViewController: UIViewController {
+    
+    var detailsView: DetailsView = {
+        let view = DetailsView()
+        return view
+    }()
 
     var placeNameLabel: UILabel = {
         var placeNameLabel = UILabel()
@@ -61,22 +66,26 @@ class DetailsViewController: UIViewController {
         super.viewDidLoad()
 
         view.backgroundColor = .systemBackground
-        
-        view.addSubview(placeNameLabel)
+        view.addSubview(detailsView)
+        detailsView.fsqID = fsqID
+        detailsView.label.text = "you made it!"
+        /*view.addSubview(placeNameLabel)
         view.addSubview(categoryLabel)
         view.addSubview(ratingsLabel)
         view.addSubview(addressLabel)
         view.addSubview(phoneNumberLabel)
-        view.addSubview(websiteLabel)
+        view.addSubview(websiteLabel)*/
         view.addSubview(saveButton)
         
         configureConstraints()
+        detailsView.translatesAutoresizingMaskIntoConstraints = false
+        detailsView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         
         saveButton.addTarget(self, action: #selector(handleSaveButtonTap), for: .touchUpInside)
     }
 
     func configureConstraints() {
-        let placeNameLabelConstraints = [
+        /*let placeNameLabelConstraints = [
             placeNameLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             placeNameLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20)
         ]
@@ -101,18 +110,18 @@ class DetailsViewController: UIViewController {
         let websiteLabelConstraints = [
             websiteLabel.topAnchor.constraint(equalTo: phoneNumberLabel.bottomAnchor, constant: 10),
             websiteLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20)
-        ]
+        ]*/
         let saveButtonConstraints = [
-            saveButton.bottomAnchor.constraint(equalTo: websiteLabel.bottomAnchor, constant: 100),
+            //saveButton.bottomAnchor.constraint(equalTo: websiteLabel.bottomAnchor, constant: 100),
             saveButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor)
         ]
 
-        NSLayoutConstraint.activate(placeNameLabelConstraints)
+        /*NSLayoutConstraint.activate(placeNameLabelConstraints)
         NSLayoutConstraint.activate(categoryLabelConstraints)
         NSLayoutConstraint.activate(ratingsLabelConstraints)
         NSLayoutConstraint.activate(addressLabelConstraints)
         NSLayoutConstraint.activate(phoneNumberLabelConstraints)
-        NSLayoutConstraint.activate(websiteLabelConstraints)
+        NSLayoutConstraint.activate(websiteLabelConstraints)*/
         NSLayoutConstraint.activate(saveButtonConstraints)
     }
     

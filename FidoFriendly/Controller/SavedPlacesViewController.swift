@@ -56,21 +56,34 @@ extension SavedPlacesViewController: UITableViewDelegate, UITableViewDataSource 
         if savedPlaces.count < 1 {
             cell.placeNameLabel.text = "You haven't saved any dog-friendly places yet."
         }
-        cell.savedPlace? = savedPlaces[indexPath.row]
+        cell.savedPlace = savedPlaces[indexPath.row]
         return cell
     }
     
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         savedPlaceTable.deselectRow(at: indexPath, animated: true)
         if let id = savedPlaces[indexPath.row].fsqID {
-            APIManager.shared.getOneDogFriendlyResult(fsqID: id) { place in
+            let detailsVC = DetailsViewController()
+            
+            /*APIManager.shared.getOneDogFriendlyResult(fsqID: id) { place in
                 // detailsView(place) and pass off with nav controller
-                let detailsVC = DetailsViewController()
-                navigationController?.pushViewController(detailsVC, animated: true)
+                DispatchQueue.main.async {
+                    placeDetails = place
+                }
+                print("inside!!         !!")
+                print(placeDetails)
             }
+            // sending to details view
+            detailsVC.title = placeDetails.placeName ?? "Unknown Name"
+            detailsVC.placeNameLabel.text = placeDetails.placeName ?? "Unknown Name"
+            detailsVC.categoryLabel.text = placeDetails.categories?.first?.name ?? ""
+            detailsVC.addressLabel.text = placeDetails.location?.address ?? ""
+            detailsVC.phoneNumberLabel.text = placeDetails.tel ?? ""
+            detailsVC.websiteLabel.text = placeDetails.website ?? ""
+            detailsVC.ratingsLabel.text = "\(placeDetails.rating?.description ?? "-")/10"*/
+            detailsVC.fsqID = id
+            self.navigationController?.pushViewController(detailsVC, animated: true)
         }
-        // pass info to details view
-        
     }
 }
 

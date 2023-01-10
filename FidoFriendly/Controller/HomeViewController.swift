@@ -146,8 +146,6 @@ extension HomeViewController: UITextFieldDelegate {
                 LocationManager.shared.findLocation(with: text) { [weak self] locations in
                     self?.locations = locations
                     guard let query = locations.first else { return }
-                    print("text delegate:")
-                    print(locations)
                     self?.sendSearch(with: query)
                     
                 
@@ -170,8 +168,6 @@ extension HomeViewController: UITextFieldDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        print("cell clicked!")
-        print(locations[indexPath.row].title)
     }
 }
 */
