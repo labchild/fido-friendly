@@ -33,13 +33,13 @@ class LocationManager: NSObject {
                     searchTitle += street
                 }
                 if let city = place.locality {
-                    searchTitle += city
+                    searchTitle += ", \(city)"
                 }
                 if let region = place.administrativeArea {
-                    searchTitle += region
+                    searchTitle += ", \(region)"
                 }
                 if let country = place.country {
-                    searchTitle += country
+                    searchTitle += ", \(country)"
                 }
                 
                 let result = SearchableLocation(title: searchTitle, coordinates: place.location?.coordinate)
