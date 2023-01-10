@@ -24,7 +24,7 @@ class ResultsViewController: UIViewController {
         resultsTable.delegate = self
         resultsTable.dataSource = self
         
-        APICaller.shared.getDogFriendlyResults(completion: { (Places) in
+        APIManager.shared.getDogFriendlyResults(completion: { (Places) in
             self.searchData = Places.results
             DispatchQueue.main.async {
                 self.resultsTable.reloadData()
