@@ -7,7 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B46B404F296D1046006C4F71 /* ResultsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46B404E296D1046006C4F71 /* ResultsTableViewCell.swift */; };
+		B46B4052296D24E5006C4F71 /* UnitConversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = B46B4051296D24E5006C4F71 /* UnitConversion.swift */; };
 		B473CA80296A227F00CB2A86 /* DogFriendlyPlace.swift in Sources */ = {isa = PBXBuildFile; fileRef = B473CA7F296A227F00CB2A86 /* DogFriendlyPlace.swift */; };
+		B473CA83296B9D5200CB2A86 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B473CA82296B9D5200CB2A86 /* APIManager.swift */; };
+		B473CA85296BACEC00CB2A86 /* Places.swift in Sources */ = {isa = PBXBuildFile; fileRef = B473CA84296BACEC00CB2A86 /* Places.swift */; };
 		B4996E312964D25000A72707 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4996E302964D25000A72707 /* AppDelegate.swift */; };
 		B4996E332964D25000A72707 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4996E322964D25000A72707 /* SceneDelegate.swift */; };
 		B4996E352964D25000A72707 /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4996E342964D25000A72707 /* TabBarController.swift */; };
@@ -18,10 +22,15 @@
 		B49E977E29676C800037D397 /* ResultsMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49E977D29676C800037D397 /* ResultsMapViewController.swift */; };
 		B49E978029676CE80037D397 /* SavedPlacesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B49E977F29676CE80037D397 /* SavedPlacesViewController.swift */; };
 		B4B0B8F12967A19D002AF645 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4B0B8F02967A19D002AF645 /* DetailsViewController.swift */; };
+		B4BEC30F296DD7A100766D80 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BEC30E296DD7A100766D80 /* LocationManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		B46B404E296D1046006C4F71 /* ResultsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsTableViewCell.swift; sourceTree = "<group>"; };
+		B46B4051296D24E5006C4F71 /* UnitConversion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitConversion.swift; sourceTree = "<group>"; };
 		B473CA7F296A227F00CB2A86 /* DogFriendlyPlace.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogFriendlyPlace.swift; sourceTree = "<group>"; };
+		B473CA82296B9D5200CB2A86 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
+		B473CA84296BACEC00CB2A86 /* Places.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Places.swift; sourceTree = "<group>"; };
 		B4996E2D2964D25000A72707 /* FidoFriendly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FidoFriendly.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B4996E302964D25000A72707 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B4996E322964D25000A72707 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -34,6 +43,7 @@
 		B49E977D29676C800037D397 /* ResultsMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsMapViewController.swift; sourceTree = "<group>"; };
 		B49E977F29676CE80037D397 /* SavedPlacesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedPlacesViewController.swift; sourceTree = "<group>"; };
 		B4B0B8F02967A19D002AF645 /* DetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
+		B4BEC30E296DD7A100766D80 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,12 +57,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B46B4050296D24C6006C4F71 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				B46B4051296D24E5006C4F71 /* UnitConversion.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		B473CA7E296A221200CB2A86 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				B473CA7F296A227F00CB2A86 /* DogFriendlyPlace.swift */,
+				B473CA84296BACEC00CB2A86 /* Places.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		B473CA81296B9D1100CB2A86 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				B473CA82296B9D5200CB2A86 /* APIManager.swift */,
+				B4BEC30E296DD7A100766D80 /* LocationManager.swift */,
+			);
+			path = Managers;
 			sourceTree = "<group>";
 		};
 		B4996E242964D24F00A72707 = {
@@ -74,6 +102,8 @@
 		B4996E2F2964D25000A72707 /* FidoFriendly */ = {
 			isa = PBXGroup;
 			children = (
+				B46B4050296D24C6006C4F71 /* Utils */,
+				B473CA81296B9D1100CB2A86 /* Managers */,
 				B473CA7E296A221200CB2A86 /* Models */,
 				B4B0B8EF29679FB0002AF645 /* View */,
 				B49E977829676BDE0037D397 /* Controller */,
@@ -102,6 +132,7 @@
 		B4B0B8EF29679FB0002AF645 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				B46B404E296D1046006C4F71 /* ResultsTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -178,12 +209,17 @@
 			files = (
 				B4996E352964D25000A72707 /* TabBarController.swift in Sources */,
 				B4996E312964D25000A72707 /* AppDelegate.swift in Sources */,
+				B46B404F296D1046006C4F71 /* ResultsTableViewCell.swift in Sources */,
 				B49E978029676CE80037D397 /* SavedPlacesViewController.swift in Sources */,
+				B473CA83296B9D5200CB2A86 /* APIManager.swift in Sources */,
 				B4B0B8F12967A19D002AF645 /* DetailsViewController.swift in Sources */,
 				B473CA80296A227F00CB2A86 /* DogFriendlyPlace.swift in Sources */,
 				B4996E332964D25000A72707 /* SceneDelegate.swift in Sources */,
 				B49E977C29676C230037D397 /* ResultsViewController.swift in Sources */,
+				B473CA85296BACEC00CB2A86 /* Places.swift in Sources */,
+				B4BEC30F296DD7A100766D80 /* LocationManager.swift in Sources */,
 				B49E977E29676C800037D397 /* ResultsMapViewController.swift in Sources */,
+				B46B4052296D24E5006C4F71 /* UnitConversion.swift in Sources */,
 				B49E977A29676BF80037D397 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

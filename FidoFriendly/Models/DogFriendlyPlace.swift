@@ -7,14 +7,14 @@
 
 import Foundation
 
-struct DogFriendlyPlace: Codable {
-    var fsqId: String
-    var placeName: String
+struct DogFriendlyPlace: Decodable {
+    var fsqId: String?
+    var placeName: String?
     // let geocode: Geocode
-    var categories: [Category]
-    var location: Location
-    var distance: Double
-    var link: String
+    var categories: [Category]?
+    var location: Location?
+    var distance: Double?
+    var link: String?
     var description: String?
     var tel: String?
     var website: String?
@@ -28,9 +28,9 @@ struct DogFriendlyPlace: Codable {
     }
 }
 
-struct Location: Codable {
-    let address: String
-    let city: String
+struct Location: Decodable {
+    let address: String?
+    let city: String?
     let crossStreet: String?
     let region: String?
     let postcode: String?
@@ -43,6 +43,7 @@ struct Location: Codable {
     }
 }
 
-struct Category: Codable {
-    let name: String
+struct Category: Decodable {
+    let id: Int?
+    let name: String?
 }

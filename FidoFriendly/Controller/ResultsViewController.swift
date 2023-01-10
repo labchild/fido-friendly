@@ -11,22 +11,28 @@ class ResultsViewController: UIViewController {
 
     let resultsTable = UITableView()
     
-    var searchData = [String]()
+    var searchData: [DogFriendlyPlace]?
+    var latitude = Double()
+    var longitude = Double()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        for i in 0...25 {
-            searchData.append("Dog-Friendly Place \(i + 1)")
-        }
         
         view.backgroundColor = .systemPurple
         view.addSubview(resultsTable)
         
-        resultsTable.register(UITableViewCell.self,
-                              forCellReuseIdentifier: "cell")
+        resultsTable.register(ResultsTableViewCell.self, forCellReuseIdentifier: "resultsCell")
         resultsTable.delegate = self
         resultsTable.dataSource = self
+        
+        APIManager.shared.getDogFriendlyResults(lat: latitude, long: longitude, completion: { (Places) in
+            self.searchData = Places.results
+            DispatchQueue.main.async {
+                self.resultsTable.reloadData()
+            }
+        })
+
     }
     
     override func viewDidLayoutSubviews() {
@@ -40,21 +46,29 @@ class ResultsViewController: UIViewController {
 extension ResultsViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return searchData.count
+        return searchData?.count ?? 1
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = searchData[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "resultsCell", for: indexPath) as! ResultsTableViewCell
+        // cell.textLabel?.text = "\(searchData?[indexPath.row].placeName ?? "") - \(searchData?[indexPath.row].distance?.description ?? "")"
+        cell.placeResult = searchData?[indexPath.row]
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         resultsTable.deselectRow(at: indexPath, animated: true)
-        print("cell \(indexPath.row + 1) tapped")
+        print(searchData![indexPath.row])
         
+        // I could and perhaps should turn details into a model, then send the whole Dog Friendly Place to the constructor?
         let detailsVC = DetailsViewController()
-        detailsVC.title = searchData[indexPath.row]
+        detailsVC.title = searchData?[indexPath.row].placeName ?? "Unknown Name"
+        detailsVC.placeNameLabel.text = searchData?[indexPath.row].placeName ?? "Unknown Name"
+        detailsVC.categoryLabel.text = searchData?[indexPath.row].categories?[0].name ?? ""
+        detailsVC.addressLabel.text = searchData?[indexPath.row].location?.address ?? ""
+        detailsVC.phoneNumberLabel.text = searchData?[indexPath.row].tel ?? ""
+        detailsVC.websiteLabel.text = searchData?[indexPath.row].website ?? ""
+        detailsVC.ratingsLabel.text = "\(searchData?[indexPath.row].rating?.description ?? "-")/10"
         navigationController?.pushViewController(detailsVC, animated: true)
         
     }

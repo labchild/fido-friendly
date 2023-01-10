@@ -9,40 +9,41 @@ import UIKit
 
 class DetailsViewController: UIViewController {
 
-    let placeNameLabel: UILabel = {
-        let placeNameLabel = UILabel()
+    var placeNameLabel: UILabel = {
+        var placeNameLabel = UILabel()
         placeNameLabel.translatesAutoresizingMaskIntoConstraints = false
         placeNameLabel.font = .systemFont(ofSize: 22, weight: .bold)
-        placeNameLabel.text = "Dog-Friendly Bar"
         return placeNameLabel
     }()
     let categoryLabel: UILabel = {
         let categoryLabel = UILabel()
         categoryLabel.translatesAutoresizingMaskIntoConstraints = false
         categoryLabel.font = .systemFont(ofSize: 13, weight: .regular)
-        categoryLabel.text = "Dining & Drinking"
         return categoryLabel
+    }()
+    let ratingsLabel: UILabel = {
+        let ratingsLabel = UILabel()
+        ratingsLabel.translatesAutoresizingMaskIntoConstraints = false
+        ratingsLabel.font = .systemFont(ofSize: 13, weight: .regular)
+        return ratingsLabel
     }()
     let addressLabel: UILabel = {
         let addressLabel = UILabel()
         addressLabel.translatesAutoresizingMaskIntoConstraints = false
         addressLabel.font = .systemFont(ofSize: 16, weight: .regular)
         addressLabel.numberOfLines = 0
-        addressLabel.text = "123 Main Street\nBrooklyn, NY"
         return addressLabel
     }()
     let phoneNumberLabel: UILabel = {
         let phoneNumberLabel = UILabel()
         phoneNumberLabel.translatesAutoresizingMaskIntoConstraints = false
         phoneNumberLabel.font = .systemFont(ofSize: 16, weight: .regular)
-        phoneNumberLabel.text = "☎ (123) 456-7890"
         return phoneNumberLabel
     }()
     let websiteLabel: UILabel = {
         let websiteLabel = UILabel()
         websiteLabel.translatesAutoresizingMaskIntoConstraints = false
         websiteLabel.font = .systemFont(ofSize: 16, weight: .regular)
-        websiteLabel.text = "🌐 dog-bar.net/"
         return websiteLabel
     }()
     let saveButton: UIButton = {
@@ -61,6 +62,7 @@ class DetailsViewController: UIViewController {
         
         view.addSubview(placeNameLabel)
         view.addSubview(categoryLabel)
+        view.addSubview(ratingsLabel)
         view.addSubview(addressLabel)
         view.addSubview(phoneNumberLabel)
         view.addSubview(websiteLabel)
@@ -76,7 +78,13 @@ class DetailsViewController: UIViewController {
         ]
         let categoryLabelConstraints = [
             categoryLabel.topAnchor.constraint(equalTo: placeNameLabel.bottomAnchor, constant: 10),
-            categoryLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20)
+            categoryLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            categoryLabel.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.7)
+        ]
+        let ratingsLabelConstraints = [
+            ratingsLabel.topAnchor.constraint(equalTo: placeNameLabel.bottomAnchor, constant: 10),
+            ratingsLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 20),
+            ratingsLabel.leadingAnchor.constraint(equalTo: categoryLabel.trailingAnchor, constant: 10)
         ]
         let addressLabelConstraints = [
             addressLabel.topAnchor.constraint(equalTo: categoryLabel.bottomAnchor, constant: 10),
@@ -97,6 +105,7 @@ class DetailsViewController: UIViewController {
 
         NSLayoutConstraint.activate(placeNameLabelConstraints)
         NSLayoutConstraint.activate(categoryLabelConstraints)
+        NSLayoutConstraint.activate(ratingsLabelConstraints)
         NSLayoutConstraint.activate(addressLabelConstraints)
         NSLayoutConstraint.activate(phoneNumberLabelConstraints)
         NSLayoutConstraint.activate(websiteLabelConstraints)
