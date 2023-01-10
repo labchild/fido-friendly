@@ -16,12 +16,19 @@ class HomeViewController: UIViewController {
         label.textColor = .black
         return label
     }()
-    let textField: UITextField = {
+    
+    private let textField: UITextField = {
         let field = UITextField()
         field.placeholder = "Enter an address"
         field.layer.cornerRadius = 8
         field.backgroundColor = .tertiarySystemBackground
         return field
+    }()
+    
+    private let suggestionsTable: UITableView = {
+        let table = UITableView()
+        table.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        return table
     }()
     let searchButton = UIButton()
    /* private var categoryPickers = [UISwitch]()
@@ -46,11 +53,14 @@ class HomeViewController: UIViewController {
 
         view.addSubview(welcomeLabel)
         view.addSubview(textField)
+        view.addSubview(suggestionsTable)
         addConstraints()
         
         textField.delegate = self
-        
+        suggestionsTable.delegate = self
+        suggestionsTable.dataSource = self
     }
+
     
     func addConstraints() {
         // button
@@ -71,6 +81,11 @@ class HomeViewController: UIViewController {
         textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 50))
         textField.leftViewMode = .always
         textField.frame = CGRect(x: 10, y: 130, width: view.frame.size.width-30, height: 40)
+        
+        // tableview
+        suggestionsTable.translatesAutoresizingMaskIntoConstraints = false
+        suggestionsTable.topAnchor.constraint(equalTo: textField.bottomAnchor, constant: 20).isActive = true
+        
     }
     
    /* func createCategorySwitches() {
@@ -130,8 +145,27 @@ extension HomeViewController: UITextFieldDelegate {
             LocationManager.shared.findLocation(with: text) { [weak self] locations in
                 self?.locations = locations
                 print(locations)
+                self?.suggestionsTable.reloadData()
             }
         }
           return true
+    }
+}
+
+extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return locations.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        cell.textLabel?.text = locations[indexPath.row].title
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        print("cell clicked!")
+        print(locations[indexPath.row].title)
     }
 }
