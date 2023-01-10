@@ -71,7 +71,7 @@ class DetailsViewController: UIViewController {
         
         configureConstraints()
         
-        saveButton.addTarget(self, action: #selector(savePlaceResult), for: .touchUpInside)
+        saveButton.addTarget(self, action: #selector(handleSaveButtonTap), for: .touchUpInside)
     }
 
     func configureConstraints() {
@@ -116,14 +116,17 @@ class DetailsViewController: UIViewController {
     }
     
     // MARK: Actions
-    func savePlaceResult() {
-        
+    @objc func handleSaveButtonTap() {
+        print(self.title)
+        if let testName = self.title {
+            savePlace(value: testName)
+        }
     }
 }
 
 // MARK: Extensions: Core Data
 extension DetailsViewController {
-    func save(value: String) {
+    func savePlace(value: String) {
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
             let context = appDelegate.persistentContainer.viewContext
             
