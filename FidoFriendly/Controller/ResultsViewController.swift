@@ -26,8 +26,8 @@ class ResultsViewController: UIViewController {
         resultsTable.delegate = self
         resultsTable.dataSource = self
         
-        APIManager.shared.getDogFriendlyResults(lat: latitude, long: longitude, completion: { (Places) in
-            self.searchData = Places.results
+        APIManager.shared.getDogFriendlyResults(lat: latitude, long: longitude, completion: { (places) in
+            self.searchData = places.results
             DispatchQueue.main.async {
                 self.resultsTable.reloadData()
             }
@@ -71,6 +71,7 @@ extension ResultsViewController: UITableViewDelegate, UITableViewDataSource {
         detailsVC.phoneNumberLabel.text = searchData?[indexPath.row].tel ?? ""
         detailsVC.websiteLabel.text = searchData?[indexPath.row].website ?? ""
         detailsVC.ratingsLabel.text = "\(searchData?[indexPath.row].rating?.description ?? "-")/10"
+        detailsVC.fsqID = searchData?[indexPath.row].fsqId! ?? ""
         navigationController?.pushViewController(detailsVC, animated: true)
         
     }

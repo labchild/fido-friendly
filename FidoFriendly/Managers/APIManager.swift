@@ -50,9 +50,9 @@ class APIManager {
     }
     
     
-    func getOneDogFriendlyResult(with id: String, completion: @escaping (DogFriendlyPlace) -> Void) {
+    func getOneDogFriendlyResult(fsqID: String, completion: @escaping (DogFriendlyPlace) -> Void) {
        
-        guard let url = URL(string: "\(baseURL)\(byID)/\(id)") else { return }
+        guard let url = URL(string: "\(baseURL)\(byID)/\(fsqID)") else { return }
         
         var request = URLRequest(url: url)
         request.setValue(apiKey, forHTTPHeaderField: "Authorization")

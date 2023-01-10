@@ -19,7 +19,7 @@ class SavedPlacesViewController: UIViewController {
         view.backgroundColor = .systemBackground
         view.addSubview(savedPlaceTable)
         
-        savedPlaceTable.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        savedPlaceTable.register(SavedTableViewCell.self, forCellReuseIdentifier: "cell")
         savedPlaceTable.delegate = self
         savedPlaceTable.dataSource = self
         getSavedPlaces()
@@ -28,6 +28,11 @@ class SavedPlacesViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         savedPlaceTable.frame = view.bounds
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        getSavedPlaces()
     }
     
     private func getSavedPlaces() {
@@ -47,12 +52,25 @@ extension SavedPlacesViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! SavedTableViewCell
         if savedPlaces.count < 1 {
-            cell.textLabel?.text = "You haven't saved any dog-friendly places yet."
+            cell.placeNameLabel.text = "You haven't saved any dog-friendly places yet."
         }
-        cell.textLabel?.text = savedPlaces[indexPath.row].testName
+        cell.savedPlace? = savedPlaces[indexPath.row]
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        savedPlaceTable.deselectRow(at: indexPath, animated: true)
+        if let id = savedPlaces[indexPath.row].fsqID {
+            APIManager.shared.getOneDogFriendlyResult(fsqID: id) { place in
+                // detailsView(place) and pass off with nav controller
+                let detailsVC = DetailsViewController()
+                navigationController?.pushViewController(detailsVC, animated: true)
+            }
+        }
+        // pass info to details view
+        
     }
 }
 
@@ -66,12 +84,15 @@ extension SavedPlacesViewController {
                 let results = try context.fetch(fetchRequest)
                 
                 for result in results {
-                    if let testName = result.testName {
-                        print(testName)
+                    if let placeName = result.placeName {
+                        print(placeName)
                     }
                 }
                 
+                // make our data available to the rest of the view
                 savedPlaces = results
+                print(results)
+                
             } catch {
                 print("couldn't retrieve")
                 print(error)

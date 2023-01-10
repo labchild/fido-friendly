@@ -55,6 +55,7 @@ class DetailsViewController: UIViewController {
         saveButton.configuration?.baseBackgroundColor = .systemPink
         return saveButton
     }()
+    var fsqID = String()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -118,26 +119,29 @@ class DetailsViewController: UIViewController {
     // MARK: Actions
     @objc func handleSaveButtonTap() {
         print(self.title)
-        if let testName = self.title {
-            savePlace(value: testName)
+        let id = self.fsqID
+        if let placeName = self.title {
+            savePlace(placeName: placeName, fsqID: id)
         }
     }
 }
 
 // MARK: Extensions: Core Data
 extension DetailsViewController {
-    func savePlace(value: String) {
+    func savePlace(placeName: String, fsqID: String) {
         if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
             let context = appDelegate.persistentContainer.viewContext
             
             guard let entityDescription = NSEntityDescription.entity(forEntityName: "TestEntity", in: context) else { return }
             
             let newValue = NSManagedObject(entity: entityDescription, insertInto: context)
-            newValue.setValue(value, forKey: "testName")
+            newValue.setValue(placeName, forKey: "placeName")
+            newValue.setValue(fsqID, forKey: "fsqID")
             
             do {
                 try context.save()
-                print("Saved: \(value)")
+                print("Saved: \(placeName)")
+                print("saved: \(fsqID)")
             } catch {
                 print("Saving error: \(error)")
             }

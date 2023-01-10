@@ -10,7 +10,6 @@ import Foundation
 struct DogFriendlyPlace: Decodable {
     var fsqId: String?
     var placeName: String?
-    // let geocode: Geocode
     var categories: [Category]?
     var location: Location?
     var distance: Double?
@@ -23,7 +22,6 @@ struct DogFriendlyPlace: Decodable {
     enum CodingKeys: String, CodingKey {
         case fsqId = "fsq_id"
         case placeName = "name"
-        // case geocode = "geocodes"
         case categories, location, distance, link, description, tel, website, rating
     }
 }

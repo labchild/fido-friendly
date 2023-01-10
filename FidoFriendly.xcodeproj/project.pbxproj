@@ -24,6 +24,7 @@
 		B4BEC30F296DD7A100766D80 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BEC30E296DD7A100766D80 /* LocationManager.swift */; };
 		B4BEC312296DFD4800766D80 /* SavedPlaces.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B4BEC310296DFD4800766D80 /* SavedPlaces.xcdatamodeld */; };
 		B4BEC337296E055A00766D80 /* DetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BEC336296E055A00766D80 /* DetailsView.swift */; };
+		B4BEC339296E0D3700766D80 /* SavedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4BEC338296E0D3700766D80 /* SavedTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		B4BEC30E296DD7A100766D80 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		B4BEC311296DFD4800766D80 /* SavedPlaces.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = SavedPlaces.xcdatamodel; sourceTree = "<group>"; };
 		B4BEC336296E055A00766D80 /* DetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsView.swift; sourceTree = "<group>"; };
+		B4BEC338296E0D3700766D80 /* SavedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				B46B404E296D1046006C4F71 /* ResultsTableViewCell.swift */,
+				B4BEC338296E0D3700766D80 /* SavedTableViewCell.swift */,
 				B4BEC336296E055A00766D80 /* DetailsView.swift */,
 			);
 			path = View;
@@ -214,6 +217,7 @@
 				B4BEC312296DFD4800766D80 /* SavedPlaces.xcdatamodeld in Sources */,
 				B46B404F296D1046006C4F71 /* ResultsTableViewCell.swift in Sources */,
 				B49E978029676CE80037D397 /* SavedPlacesViewController.swift in Sources */,
+				B4BEC339296E0D3700766D80 /* SavedTableViewCell.swift in Sources */,
 				B473CA83296B9D5200CB2A86 /* APIManager.swift in Sources */,
 				B4B0B8F12967A19D002AF645 /* DetailsViewController.swift in Sources */,
 				B473CA80296A227F00CB2A86 /* DogFriendlyPlace.swift in Sources */,
