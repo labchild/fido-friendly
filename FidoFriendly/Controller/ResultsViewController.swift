@@ -12,6 +12,8 @@ class ResultsViewController: UIViewController {
     let resultsTable = UITableView()
     
     var searchData: [DogFriendlyPlace]?
+    var latitude = Double()
+    var longitude = Double()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +26,7 @@ class ResultsViewController: UIViewController {
         resultsTable.delegate = self
         resultsTable.dataSource = self
         
-        APIManager.shared.getDogFriendlyResults(completion: { (Places) in
+        APIManager.shared.getDogFriendlyResults(lat: latitude, long: longitude, completion: { (Places) in
             self.searchData = Places.results
             DispatchQueue.main.async {
                 self.resultsTable.reloadData()

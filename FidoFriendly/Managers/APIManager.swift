@@ -9,23 +9,24 @@ import Foundation
 
 
 class APIManager {
-    let baseURL = "https://api.foursquare.com/v3/places"
-    let search = "/search?query=dog-friendly,dogs"
-    let byID = "/fsq_id"
+    private let baseURL = "https://api.foursquare.com/v3/places"
+    private let search = "/search?query=dog-friendly,dogs"
+    private let byID = "/fsq_id"
+    private let apiKey = "fsq3wER44I2BMZ/3LX+LgxYsaNep8ibuWxm738hSwlh9tKY="
     
     static let shared = APIManager()
     
     // basic get request
-    func getDogFriendlyResults(completion: @escaping (Places) -> Void) {
+    func getDogFriendlyResults(lat: Double, long: Double, completion: @escaping (Places) -> Void) {
 
         let returnFields = "&fields=fsq_id,name,categories,location,distance,link,description,tel,website,rating"
        
         guard
-            let url = URL(string: "\(baseURL)\(search)\(returnFields)&ll=40.64994853980254,-73.9605774290414")
+            let url = URL(string: "\(baseURL)\(search)\(returnFields)&ll=\(lat),\(long)")
         else { return }
         
         var request = URLRequest(url: url)
-        request.setValue("fsq3wER44I2BMZ/3LX+LgxYsaNep8ibuWxm738hSwlh9tKY=", forHTTPHeaderField: "Authorization")
+        request.setValue(apiKey, forHTTPHeaderField: "Authorization")
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         
         let task = URLSession.shared.dataTask(with: request, completionHandler: {(data, _, error) in
@@ -54,7 +55,7 @@ class APIManager {
         guard let url = URL(string: "\(baseURL)\(byID)/\(id)") else { return }
         
         var request = URLRequest(url: url)
-        request.setValue("fsq3wER44I2BMZ/3LX+LgxYsaNep8ibuWxm738hSwlh9tKY=", forHTTPHeaderField: "Authorization")
+        request.setValue(apiKey, forHTTPHeaderField: "Authorization")
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         
         let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, _, error) in
@@ -64,10 +65,8 @@ class APIManager {
             }
             
             do {
-                //print(data)
                 let results = try JSONDecoder().decode(DogFriendlyPlace.self, from: data)
                 completion(results)
-                //print("single result: \(results)")
             } catch {
                 print(error.localizedDescription)
             }

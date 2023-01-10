@@ -28,7 +28,10 @@ class TabBarController: UITabBarController {
         tab1.title = "Search"
         tab2.title = "Saved"
         
-        tabBar.tintColor = .label
+        tabBar.tintColor = .systemPink
+        tabBar.unselectedItemTintColor = .systemCyan
+        tabBar.isTranslucent = false
+        tabBar.barTintColor = .tertiarySystemBackground
         
         setViewControllers([tab1, tab2], animated: true)
     }
