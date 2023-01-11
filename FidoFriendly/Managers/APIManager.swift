@@ -10,7 +10,7 @@ import Foundation
 
 class APIManager {
     private let baseURL = "https://api.foursquare.com/v3/places"
-    private let search = "/search?query=dog-friendly,dogs"
+    private let search = "/search?query=dog-friendly,pets"
     private let apiKey = "fsq3wER44I2BMZ/3LX+LgxYsaNep8ibuWxm738hSwlh9tKY="
     private let returnFields = "&fields=fsq_id,name,categories,location,distance,link,description,tel,website,rating"
     
