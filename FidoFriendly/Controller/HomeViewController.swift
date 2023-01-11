@@ -11,7 +11,7 @@ class HomeViewController: UIViewController {
 
     private let welcomeLabel: UILabel = {
         let label = UILabel()
-        label.text = "Where to?"
+        label.text = "Ready to bring Fido?\nSearch for dog-friendly places nearby."
         label.font = .systemFont(ofSize: 24, weight: .semibold)
         label.textColor = .black
         return label
@@ -25,15 +25,25 @@ class HomeViewController: UIViewController {
         return field
     }()
     
+    private let backgroundImage: UIImageView = {
+        let view = UIImageView()
+        return view
+    }()
+    
+    private let backgroundIcon = UIImage(systemName: "pawprint.circle.fill")
+    let iconConfig = UIImage.SymbolConfiguration(paletteColors: [.systemGreen, .green])
+    
     var locations = [SearchableLocation]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBlue
+        view.backgroundColor = .systemGreen
 
         view.addSubview(welcomeLabel)
         view.addSubview(textField)
+        view.addSubview(backgroundImage)
         addConstraints()
+        assignBackground()
         
         textField.delegate = self
     }
@@ -53,6 +63,22 @@ class HomeViewController: UIViewController {
         textField.leftViewMode = .always
         textField.frame = CGRect(x: 10, y: 130, width: view.frame.size.width-30, height: 40)
         
+        /*backgroundImage.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height)
+        let backgroundConstraints = [
+            backgroundImage.topAnchor.constraint(equalTo: view.topAnchor),
+            backgroundImage.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            backgroundImage.widthAnchor.constraint(greaterThanOrEqualTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 1)
+        ]
+        NSLayoutConstraint.activate(backgroundConstraints)*/
+        backgroundImage.center = view.center
+    }
+    
+    private func assignBackground() {
+        // let background = UIImage(named: "dog-glasses")
+        backgroundImage.image = backgroundIcon
+
+        view.addSubview(backgroundImage)
+        self.view.sendSubviewToBack(backgroundImage)
     }
     
     func sendSearch(with query: SearchableLocation) {

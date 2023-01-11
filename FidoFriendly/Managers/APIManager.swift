@@ -51,7 +51,7 @@ class APIManager {
     func getOneDogFriendlyResult(fsqID: String, completion: @escaping (DogFriendlyPlace) -> Void) {
        
         guard let url = URL(string: "\(baseURL)/\(fsqID)") else { return }
-        print(url)
+
         var request = URLRequest(url: url)
         request.setValue(apiKey, forHTTPHeaderField: "Authorization")
         request.setValue("application/json", forHTTPHeaderField: "Accept")

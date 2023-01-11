@@ -37,6 +37,7 @@ class SavedTableViewCell: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         addSubview(placeNameLabel)
+        self.backgroundColor = .systemGreen
         
         //addSubview(subtitleStack)
         configureConstraints()

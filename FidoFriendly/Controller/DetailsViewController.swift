@@ -30,7 +30,7 @@ class DetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .systemGreen
         view.addSubview(detailsView)
         detailsView.layoutSubviews()
         /*detailsView.fsqID = fsqID
@@ -45,7 +45,7 @@ class DetailsViewController: UIViewController {
         
         configureConstraints()
         detailsView.translatesAutoresizingMaskIntoConstraints = false
-        
+        detailsView.backgroundColor = .systemGreen
         
         saveButton.addTarget(self, action: #selector(handleSaveButtonTap), for: .touchUpInside)
         
@@ -62,7 +62,6 @@ class DetailsViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         // format address string into something redable
         addressString = FormatHelper.shared.formatToMultiLineAddress(location: detailsData?.location)
-        print(addressString)
         
         detailsView.fsqID = fsqID
         detailsView.placeNameLabel.text = detailsData?.placeName ?? ""
@@ -76,12 +75,12 @@ class DetailsViewController: UIViewController {
     func configureConstraints() {
         
         let detailsViewConstraints = [
-            detailsView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            detailsView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
             detailsView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
             detailsView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.9)
         ]
         let saveButtonConstraints = [
-            saveButton.topAnchor.constraint(equalTo: detailsView.bottomAnchor, constant: 100),
+            saveButton.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -100),
             saveButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor)
         ]
 

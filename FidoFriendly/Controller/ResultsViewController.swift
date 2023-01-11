@@ -19,8 +19,9 @@ class ResultsViewController: UIViewController {
         super.viewDidLoad()
 
         
-        view.backgroundColor = .systemPurple
+        view.backgroundColor = .systemGreen
         view.addSubview(resultsTable)
+        resultsTable.backgroundColor = .systemGreen
         
         resultsTable.register(ResultsTableViewCell.self, forCellReuseIdentifier: "resultsCell")
         resultsTable.delegate = self

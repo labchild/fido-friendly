@@ -11,13 +11,18 @@ import CoreData
 class SavedPlacesViewController: UIViewController {
 
     private let savedPlaceTable = UITableView()
+    private let titleLabel = UILabel()
     var savedPlaces = [TestEntity]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .systemGreen
+        view.addSubview(titleLabel)
         view.addSubview(savedPlaceTable)
+        savedPlaceTable.backgroundColor = .systemGreen
+        titleLabel.text = "Your Saved Places"
+        //titleLabel.frame = CGRect(x: 0, y: 0, width: self., height: <#T##Double#>)
         
         savedPlaceTable.register(SavedTableViewCell.self, forCellReuseIdentifier: "cell")
         savedPlaceTable.delegate = self
@@ -88,13 +93,6 @@ extension SavedPlacesViewController {
             
             do {
                 let results = try context.fetch(fetchRequest)
-                
-                for result in results {
-                    if let placeName = result.placeName {
-                        print(placeName)
-                    }
-                }
-                
                 // make it available to the view controller
                 savedPlaces = results
                 
