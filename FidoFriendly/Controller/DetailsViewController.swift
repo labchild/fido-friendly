@@ -10,11 +10,12 @@ import CoreData
 
 class DetailsViewController: UIViewController {
     
+    var detailsData: DogFriendlyPlace?
     var detailsView: DetailsView = {
         let view = DetailsView()
         return view
     }()
-
+/*
     var placeNameLabel: UILabel = {
         var placeNameLabel = UILabel()
         placeNameLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -51,7 +52,7 @@ class DetailsViewController: UIViewController {
         websiteLabel.translatesAutoresizingMaskIntoConstraints = false
         websiteLabel.font = .systemFont(ofSize: 16, weight: .regular)
         return websiteLabel
-    }()
+    }()*/
     let saveButton: UIButton = {
         let saveButton = UIButton()
         saveButton.translatesAutoresizingMaskIntoConstraints = false
@@ -67,21 +68,41 @@ class DetailsViewController: UIViewController {
 
         view.backgroundColor = .systemBackground
         view.addSubview(detailsView)
+        detailsView.layoutSubviews()
         detailsView.fsqID = fsqID
-        detailsView.label.text = "you made it!"
-        /*view.addSubview(placeNameLabel)
-        view.addSubview(categoryLabel)
-        view.addSubview(ratingsLabel)
-        view.addSubview(addressLabel)
-        view.addSubview(phoneNumberLabel)
-        view.addSubview(websiteLabel)*/
+        detailsView.placeNameLabel.text = detailsData?.placeName ?? ""
+        detailsView.categoryLabel.text = detailsData?.categories?.first?.name ?? ""
+        detailsView.ratingsLabel.text = "\(detailsData?.rating?.description ?? "-")/10"
+        detailsView.addressLabel.text = detailsData?.location?.address ?? ""
+        detailsView.phoneNumberLabel.text = "☎️ \(detailsData?.tel ?? "-")"
+        detailsView.websiteLabel.text = "🌐 \(detailsData?.website ?? "-")"
+        
         view.addSubview(saveButton)
         
         configureConstraints()
         detailsView.translatesAutoresizingMaskIntoConstraints = false
-        detailsView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
+        
         
         saveButton.addTarget(self, action: #selector(handleSaveButtonTap), for: .touchUpInside)
+        
+        APIManager.shared.getOneDogFriendlyResult(fsqID: fsqID) { place in
+            self.detailsData = place
+            DispatchQueue.main.async {
+                self.detailsView.reloadInputViews()
+                self.viewDidLayoutSubviews()
+            }
+        }
+        
+    }
+    
+    override func viewDidLayoutSubviews() {
+        detailsView.fsqID = fsqID
+        detailsView.placeNameLabel.text = detailsData?.placeName ?? ""
+        detailsView.categoryLabel.text = detailsData?.categories?.first?.name ?? ""
+        detailsView.ratingsLabel.text = "\(detailsData?.rating?.description ?? "-")/10"
+        detailsView.addressLabel.text = detailsData?.location?.address ?? ""
+        detailsView.phoneNumberLabel.text = "☎️ \(detailsData?.tel ?? "-")"
+        detailsView.websiteLabel.text = "🌐 \(detailsData?.website ?? "-")"
     }
 
     func configureConstraints() {
@@ -106,13 +127,14 @@ class DetailsViewController: UIViewController {
         let phoneNumberLabelConstraints = [
             phoneNumberLabel.topAnchor.constraint(equalTo: addressLabel.bottomAnchor, constant: 20),
             phoneNumberLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20)
-        ]
-        let websiteLabelConstraints = [
-            websiteLabel.topAnchor.constraint(equalTo: phoneNumberLabel.bottomAnchor, constant: 10),
-            websiteLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20)
         ]*/
+        let detailsViewConstraints = [
+            detailsView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            detailsView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            detailsView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.9)
+        ]
         let saveButtonConstraints = [
-            //saveButton.bottomAnchor.constraint(equalTo: websiteLabel.bottomAnchor, constant: 100),
+            saveButton.topAnchor.constraint(equalTo: detailsView.bottomAnchor, constant: 100),
             saveButton.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor)
         ]
 
@@ -120,8 +142,8 @@ class DetailsViewController: UIViewController {
         NSLayoutConstraint.activate(categoryLabelConstraints)
         NSLayoutConstraint.activate(ratingsLabelConstraints)
         NSLayoutConstraint.activate(addressLabelConstraints)
-        NSLayoutConstraint.activate(phoneNumberLabelConstraints)
-        NSLayoutConstraint.activate(websiteLabelConstraints)*/
+        NSLayoutConstraint.activate(phoneNumberLabelConstraints)*/
+        NSLayoutConstraint.activate(detailsViewConstraints)
         NSLayoutConstraint.activate(saveButtonConstraints)
     }
     

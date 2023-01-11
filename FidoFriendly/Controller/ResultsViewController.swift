@@ -65,12 +65,12 @@ extension ResultsViewController: UITableViewDelegate, UITableViewDataSource {
         // I could and perhaps should turn details into a model, then send the whole Dog Friendly Place to the constructor?
         let detailsVC = DetailsViewController()
         detailsVC.title = searchData?[indexPath.row].placeName ?? "Unknown Name"
-        detailsVC.placeNameLabel.text = searchData?[indexPath.row].placeName ?? "Unknown Name"
+        /*detailsVC.placeNameLabel.text = searchData?[indexPath.row].placeName ?? "Unknown Name"
         detailsVC.categoryLabel.text = searchData?[indexPath.row].categories?[0].name ?? ""
         detailsVC.addressLabel.text = searchData?[indexPath.row].location?.address ?? ""
         detailsVC.phoneNumberLabel.text = searchData?[indexPath.row].tel ?? ""
         detailsVC.websiteLabel.text = searchData?[indexPath.row].website ?? ""
-        detailsVC.ratingsLabel.text = "\(searchData?[indexPath.row].rating?.description ?? "-")/10"
+        detailsVC.ratingsLabel.text = "\(searchData?[indexPath.row].rating?.description ?? "-")/10"*/
         detailsVC.fsqID = searchData?[indexPath.row].fsqId ?? ""
         navigationController?.pushViewController(detailsVC, animated: true)
         
