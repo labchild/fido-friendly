@@ -4,6 +4,8 @@
 //
 //  Created by Lelah Bates Childs on 1/10/23.
 //
+// No time to implement autocomplete search bar
+// future development: get autocomplete/suggestions working, mapkit on results list (2 views)
 
 import Foundation
 import CoreLocation
@@ -22,7 +24,6 @@ class LocationManager: NSObject {
         geocoder.geocodeAddressString(query) { places, error in
             guard let places = places, error == nil else {
                 completion([])
-                print(error)
                 return
             }
             

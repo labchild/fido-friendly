@@ -16,7 +16,7 @@ class APIManager {
     
     static let shared = APIManager()
     
-    // basic get request
+    // basic get request (ALL FROM QUERY)
     func getDogFriendlyResults(lat: Double, long: Double, completion: @escaping (Places) -> Void) {
        
         guard
@@ -47,7 +47,7 @@ class APIManager {
         task.resume()
     }
     
-    
+    // get a single record request (BY ID< RETURN 1)
     func getOneDogFriendlyResult(fsqID: String, completion: @escaping (DogFriendlyPlace) -> Void) {
        
         guard let url = URL(string: "\(baseURL)/\(fsqID)") else { return }
@@ -60,13 +60,12 @@ class APIManager {
             guard let data = data, error == nil else {
                 return
             }
-            print("DATA:\n")
-            print(data)
             
             do {
+                
                 let results = try JSONDecoder().decode(DogFriendlyPlace.self, from: data)
-                print(results)
                 completion(results)
+                
             } catch {
                 print(error.localizedDescription)
                 print(error)

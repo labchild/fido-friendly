@@ -12,38 +12,32 @@ class DetailsView: UIView {
     var fsqID = String()
     var placeNameLabel: UILabel = {
         var placeNameLabel = UILabel()
-        placeNameLabel.translatesAutoresizingMaskIntoConstraints = false
         placeNameLabel.font = .systemFont(ofSize: 22, weight: .bold)
         return placeNameLabel
     }()
     let categoryLabel: UILabel = {
         let categoryLabel = UILabel()
-        categoryLabel.translatesAutoresizingMaskIntoConstraints = false
         categoryLabel.font = .systemFont(ofSize: 13, weight: .regular)
         return categoryLabel
     }()
     let ratingsLabel: UILabel = {
         let ratingsLabel = UILabel()
-        ratingsLabel.translatesAutoresizingMaskIntoConstraints = false
         ratingsLabel.font = .systemFont(ofSize: 13, weight: .regular)
         return ratingsLabel
     }()
     let addressLabel: UILabel = {
         let addressLabel = UILabel()
-        addressLabel.translatesAutoresizingMaskIntoConstraints = false
         addressLabel.font = .systemFont(ofSize: 16, weight: .regular)
         addressLabel.numberOfLines = 0
         return addressLabel
     }()
     let phoneNumberLabel: UILabel = {
         let phoneNumberLabel = UILabel()
-        phoneNumberLabel.translatesAutoresizingMaskIntoConstraints = false
         phoneNumberLabel.font = .systemFont(ofSize: 16, weight: .regular)
         return phoneNumberLabel
     }()
     let websiteLabel: UILabel = {
         let websiteLabel = UILabel()
-        websiteLabel.translatesAutoresizingMaskIntoConstraints = false
         websiteLabel.font = .systemFont(ofSize: 16, weight: .regular)
         return websiteLabel
     }()
@@ -65,9 +59,14 @@ class DetailsView: UIView {
     }
     
     func configureConstraints() {
+        // prepare for constraints
         placeNameLabel.translatesAutoresizingMaskIntoConstraints = false
-        placeNameLabel.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        placeNameLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
+        categoryLabel.translatesAutoresizingMaskIntoConstraints = false
+        ratingsLabel.translatesAutoresizingMaskIntoConstraints = false
+        addressLabel.translatesAutoresizingMaskIntoConstraints = false
+        phoneNumberLabel.translatesAutoresizingMaskIntoConstraints = false
+        websiteLabel.translatesAutoresizingMaskIntoConstraints = false
+        
         
         let placeNameLabelConstraints = [
             placeNameLabel.topAnchor.constraint(equalTo: self.topAnchor),

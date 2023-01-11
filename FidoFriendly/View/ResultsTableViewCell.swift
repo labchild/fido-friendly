@@ -12,7 +12,7 @@ class ResultsTableViewCell: UITableViewCell {
     // get and set place from data model
     var placeResult: DogFriendlyPlace? {
         didSet {
-            let distanceInMiles = UnitConverter.shared.metersToMiles(meters: placeResult?.distance)
+            let distanceInMiles = FormatHelper.shared.metersToMiles(meters: placeResult?.distance)
             
             placeNameLabel.text = placeResult?.placeName
             categoryLabel.text = placeResult?.categories?.first?.name
@@ -51,17 +51,6 @@ class ResultsTableViewCell: UITableViewCell {
         return stack
     }()
     
-    /*override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }*/
-    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         //self.insetsLayoutMarginsFromSafeArea = true
@@ -73,11 +62,6 @@ class ResultsTableViewCell: UITableViewCell {
         addSubview(subtitleStack)
         configureConstraints()
     }
-    
-    /*override func layoutMarginsDidChange() {
-        super.layoutMarginsDidChange()
-        self.layoutMargins = UIEdgeInsets(top: 10, left: 10, bottom: -10, right: -10)
-    }*/
     
     private func configureConstraints() {
         // prepare components for constraints

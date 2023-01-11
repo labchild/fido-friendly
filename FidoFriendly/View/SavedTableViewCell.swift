@@ -36,8 +36,6 @@ class SavedTableViewCell: UITableViewCell {
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        //self.insetsLayoutMarginsFromSafeArea = true
-        //self.layoutMargins = UIEdgeInsets(top: 50, left: 10, bottom: -10, right: -10)
         addSubview(placeNameLabel)
         
         //addSubview(subtitleStack)

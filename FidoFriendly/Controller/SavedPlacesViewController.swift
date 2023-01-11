@@ -42,9 +42,12 @@ class SavedPlacesViewController: UIViewController {
 
 }
 
+// MARK: Extensions: TableView Delegate, Datasource; Core Data Fetch
+
 extension SavedPlacesViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         if savedPlaces.count < 1 {
             return 1
         }
@@ -52,6 +55,7 @@ extension SavedPlacesViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! SavedTableViewCell
         if savedPlaces.count < 1 {
             cell.placeNameLabel.text = "You haven't saved any dog-friendly places yet."
@@ -60,27 +64,16 @@ extension SavedPlacesViewController: UITableViewDelegate, UITableViewDataSource 
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if savedPlaces.count < 1 {
+            return
+        }
+        
         savedPlaceTable.deselectRow(at: indexPath, animated: true)
+        
         if let id = savedPlaces[indexPath.row].fsqID {
             let detailsVC = DetailsViewController()
-            
-            /*APIManager.shared.getOneDogFriendlyResult(fsqID: id) { place in
-                // detailsView(place) and pass off with nav controller
-                DispatchQueue.main.async {
-                    placeDetails = place
-                }
-                print("inside!!         !!")
-                print(placeDetails)
-            }
-            // sending to details view
-            detailsVC.title = placeDetails.placeName ?? "Unknown Name"
-            detailsVC.placeNameLabel.text = placeDetails.placeName ?? "Unknown Name"
-            detailsVC.categoryLabel.text = placeDetails.categories?.first?.name ?? ""
-            detailsVC.addressLabel.text = placeDetails.location?.address ?? ""
-            detailsVC.phoneNumberLabel.text = placeDetails.tel ?? ""
-            detailsVC.websiteLabel.text = placeDetails.website ?? ""
-            detailsVC.ratingsLabel.text = "\(placeDetails.rating?.description ?? "-")/10"*/
             detailsVC.fsqID = id
             self.navigationController?.pushViewController(detailsVC, animated: true)
         }
@@ -102,9 +95,8 @@ extension SavedPlacesViewController {
                     }
                 }
                 
-                // make our data available to the rest of the view
+                // make it available to the view controller
                 savedPlaces = results
-                print(results)
                 
             } catch {
                 print("couldn't retrieve")
