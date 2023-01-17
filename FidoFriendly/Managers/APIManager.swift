@@ -12,7 +12,7 @@ class APIManager {
     private let baseURL = "https://api.foursquare.com/v3/places"
     private let search = "/search?query=dog-friendly,pets"
     private let apiKey = "fsq3wER44I2BMZ/3LX+LgxYsaNep8ibuWxm738hSwlh9tKY="
-    private let returnFields = "&fields=fsq_id,name,categories,location,distance,link,description,tel,website,rating"
+    private let returnFields = "fields=fsq_id,name,categories,location,distance,link,description,tel,website,rating"
     
     static let shared = APIManager()
     
@@ -20,7 +20,7 @@ class APIManager {
     func getDogFriendlyResults(lat: Double, long: Double, completion: @escaping (Places) -> Void) {
        
         guard
-            let url = URL(string: "\(baseURL)\(search)\(returnFields)&ll=\(lat),\(long)")
+            let url = URL(string: "\(baseURL)\(search)&\(returnFields)&ll=\(lat),\(long)")
         else { return }
         
         var request = URLRequest(url: url)
@@ -37,6 +37,7 @@ class APIManager {
             do {
                 
                 let results = try JSONDecoder().decode(Places.self, from: data)
+                print(results)
                 completion(results)
                 
             } catch {
@@ -50,7 +51,7 @@ class APIManager {
     // get a single record request (BY ID< RETURN 1)
     func getOneDogFriendlyResult(fsqID: String, completion: @escaping (DogFriendlyPlace) -> Void) {
        
-        guard let url = URL(string: "\(baseURL)/\(fsqID)") else { return }
+        guard let url = URL(string: "\(baseURL)/\(fsqID)?\(returnFields)") else { return }
 
         var request = URLRequest(url: url)
         request.setValue(apiKey, forHTTPHeaderField: "Authorization")
@@ -64,6 +65,7 @@ class APIManager {
             do {
                 
                 let results = try JSONDecoder().decode(DogFriendlyPlace.self, from: data)
+                print(results)
                 completion(results)
                 
             } catch {

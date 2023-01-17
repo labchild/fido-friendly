@@ -11,9 +11,17 @@ class HomeViewController: UIViewController {
 
     private let welcomeLabel: UILabel = {
         let label = UILabel()
-        label.text = "Ready to bring Fido?\nSearch for dog-friendly places nearby."
+        label.text = "Ready to bring Fido?"
         label.font = .systemFont(ofSize: 24, weight: .semibold)
-        label.textColor = .black
+        label.textColor = .label
+        return label
+    }()
+    
+    private let welcomeSubtitle: UILabel = {
+        let label = UILabel()
+        label.text = "Search for dog-friendly places nearby."
+        label.font = .systemFont(ofSize: 16, weight: .regular)
+        label.textColor = .label
         return label
     }()
     
@@ -40,8 +48,9 @@ class HomeViewController: UIViewController {
         view.backgroundColor = .systemGreen
 
         view.addSubview(welcomeLabel)
+        view.addSubview(welcomeSubtitle)
         view.addSubview(textField)
-        view.addSubview(backgroundImage)
+        //view.addSubview(backgroundImage)
         addConstraints()
         assignBackground()
         
@@ -58,10 +67,16 @@ class HomeViewController: UIViewController {
         welcomeLabel.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         welcomeLabel.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20).isActive = true
         
+        welcomeSubtitle.sizeToFit()
+        welcomeSubtitle.frame = CGRect(x: 10, y: welcomeLabel.frame.size.height-15, width: welcomeSubtitle.frame.size.width, height: welcomeSubtitle.frame.size.height)
+        welcomeSubtitle.translatesAutoresizingMaskIntoConstraints = false
+        welcomeSubtitle.topAnchor.constraint(equalTo: welcomeLabel.bottomAnchor, constant: 5).isActive = true
+        welcomeSubtitle.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 20).isActive = true
+        
         // text field
+        textField.frame = CGRect(x: 20, y: 160, width: view.frame.size.width-40, height: 40)
         textField.leftView = UIView(frame: CGRect(x: 0, y: 0, width: 10, height: 50))
         textField.leftViewMode = .always
-        textField.frame = CGRect(x: 10, y: 130, width: view.frame.size.width-30, height: 40)
         
         /*backgroundImage.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.size.height)
         let backgroundConstraints = [

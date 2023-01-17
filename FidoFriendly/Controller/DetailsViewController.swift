@@ -32,18 +32,10 @@ class DetailsViewController: UIViewController {
 
         view.backgroundColor = .systemGreen
         view.addSubview(detailsView)
-        detailsView.layoutSubviews()
-        /*detailsView.fsqID = fsqID
-        detailsView.placeNameLabel.text = detailsData?.placeName ?? ""
-        detailsView.categoryLabel.text = detailsData?.categories?.first?.name ?? ""
-        detailsView.ratingsLabel.text = "\(detailsData?.rating?.description ?? "-")/10"
-        detailsView.addressLabel.text = detailsData?.location?.address ?? ""
-        detailsView.phoneNumberLabel.text = "☎️ \(detailsData?.tel ?? "-")"
-        detailsView.websiteLabel.text = "🌐 \(detailsData?.website ?? "-")"
-        */
         view.addSubview(saveButton)
         
         configureConstraints()
+        detailsView.layoutSubviews()
         detailsView.translatesAutoresizingMaskIntoConstraints = false
         detailsView.backgroundColor = .systemGreen
         
@@ -63,6 +55,20 @@ class DetailsViewController: UIViewController {
         // format address string into something redable
         addressString = FormatHelper.shared.formatToMultiLineAddress(location: detailsData?.location)
         
+        // create website attributed string
+        /*if (detailsData?.website) != nil {
+            let siteString = String(describing: detailsData?.website)
+            do {
+                let str = try NSAttributedString(markdown: "🌐 [\(String(describing: siteString))](\(siteString))")
+                
+                detailsView.websiteLabel.attributedText = str
+            } catch {
+                detailsView.websiteLabel.text = "🌐 \(siteString ?? "-")"
+            }
+        } else {
+            detailsView.websiteLabel.text = "🌐 -"
+        }*/
+        
         detailsView.fsqID = fsqID
         detailsView.placeNameLabel.text = detailsData?.placeName ?? ""
         detailsView.categoryLabel.text = detailsData?.categories?.first?.name ?? ""
@@ -76,7 +82,7 @@ class DetailsViewController: UIViewController {
         
         let detailsViewConstraints = [
             detailsView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
-            detailsView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            detailsView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 8),
             detailsView.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.9)
         ]
         let saveButtonConstraints = [

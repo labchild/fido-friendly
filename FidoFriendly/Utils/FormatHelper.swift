@@ -38,7 +38,7 @@ class FormatHelper {
             addressString += " \(postcode)"
         }
         if let country = location.country {
-            addressString += "\n \(country)"
+            addressString += "\n\(country)"
         }
         
         return addressString
